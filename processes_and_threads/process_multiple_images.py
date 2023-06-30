@@ -1,7 +1,7 @@
 import os
 import sys
 from multiprocessing import Pool as ProcessPool
-
+import time
 import process_image
 
 def process(n_processes, n_threads, fnames):
@@ -18,8 +18,10 @@ def process(n_processes, n_threads, fnames):
         print(f'{fname} → {signature}')
 
 if __name__ == '__main__':
+    start=time.perf_counter()
     n_processes = int(sys.argv[1])
     n_threads = int(sys.argv[2])
     fnames = sys.argv[3:]
-
     process(n_processes, n_threads, fnames)
+    end=time.perf_counter()
+    print(n_processes, n_threads,end-start)
